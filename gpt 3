@@ -1,0 +1,34 @@
+pip install openai
+import openai
+
+# Set your OpenAI API key here
+api_key = "YOUR_API_KEY"
+openai.api_key = api_key
+
+def chat_with_gpt3(prompt):
+    response = openai.Completion.create(
+        engine="davinci",  # Choose the engine (davinci is recommended)
+        prompt=prompt,
+        max_tokens=50,  # Adjust based on the desired response length
+        stop=None,  # You can specify a stop sequence to end the response
+        temperature=0.7,  # Adjust for creativity (higher values are more creative)
+    )
+    return response.choices[0].text.strip()
+
+# Main loop
+print("Chat with the GPT-3 Chatbot (Type 'exit' to quit)")
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == 'exit':
+        break
+    response = chat_with_gpt3("User: " + user_input)
+    print("GPT-3 Chatbot:", response)
+import openai
+
+api_key = "YOUR_API_KEY"  # Replace with your actual API key
+openai.api_key = api_key
+response = openai.Completion.create(
+    engine="text-davinci-002",  # Choose an appropriate engine
+    prompt="Translate the following English text to French: 'Hello, how are you?'",
+    max_tokens=50,  # Set the maximum length of the response
+)
